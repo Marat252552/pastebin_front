@@ -15,6 +15,7 @@ const TextField = ({ register, errors }: { register: UseFormRegister<Inputs_T>, 
         {<p style={{ color: (errors.text?.type === 'maxLength') ? "red" : 'transparent', fontSize: '14px' }}>Не больше 200 символов</p>}
         <TextArea
             status={(errors.text) ? 'error' : undefined}
+            style={{fontSize: '20px', fontFamily: 'Montserrat'}}
             placeholder="Текст"
             onChange={e => {
                 let newE = { target: { value: e.target.value, name } }

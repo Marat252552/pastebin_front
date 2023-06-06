@@ -3,7 +3,7 @@ import { backend_url } from '../../../../config/env';
 
 const ImagesGallery = ({ images_names }: { images_names: string[] }) => (
     <div style={{ width: '100%' }}>
-        <Card title='Изображения'>
+        <Card  title={<p style={{fontSize: '20px', fontFamily: 'Montserrat'}}>Изображения</p>}>
             <Image.PreviewGroup
                 preview={{
                     onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),

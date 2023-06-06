@@ -6,7 +6,8 @@ type CreatePinAPI_T = (body: {
     files_UIDs: string[];
     session_id: string;
     title: string;
-}) => Promise<AxiosResponse<{link: string}, any>>
+    one_read: boolean
+}) => Promise<AxiosResponse<{link: string, pin_id: string}, any>>
 
 const CreatePinAPI: CreatePinAPI_T = (body) => {
     return Instanse.post('/pins', body)

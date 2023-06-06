@@ -16,6 +16,7 @@ const TitleField = ({ register, errors }: { register: UseFormRegister<Inputs_T>,
         
         <Input
             status={(errors.title) ? 'error' : undefined}
+            style={{fontSize: '20px', fontFamily: 'Montserrat'}}
             placeholder='Название'
             onChange={e => {
                 let newE = { target: { value: e.target.value, name } }
