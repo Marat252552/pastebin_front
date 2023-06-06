@@ -38,7 +38,7 @@ const MainPage = () => {
     const onSubmit = async ({ files_UIDs, text, title, one_read }: Inputs_T) => {
         try {
             let response = await CreatePinAPI({ files_UIDs, text, session_id, title, one_read })
-            navigate('/completed/' + response.data.pin_id)
+            navigate('/#/completed/' + response.data.pin_id)
         } catch (e) {
             console.log(e)
         }

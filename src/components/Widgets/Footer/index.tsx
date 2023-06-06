@@ -9,8 +9,6 @@ const Footer = () => {
             <div style={{padding: '10px'}}>
                 Условия пользования
             </div>
-
-
         </LargeMaxFullWidthTemplate>
     </div>
 }
