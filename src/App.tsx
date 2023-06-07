@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate, HashRouter } from "react-router-dom"
+import { Routes, Route, Navigate, HashRouter } from "react-router-dom"
 import MainPage from "./components/Pages/MainPage"
 import ViewPage from "./components/Pages/ViewPage"
 import NotFoundPage from "./components/Pages/NotFoundPage"
