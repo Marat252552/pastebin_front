@@ -53,7 +53,7 @@ const Uploader = ({ register, session_id, getValues }: { getValues: UseFormGetVa
             <p className="ant-upload-drag-icon">
                 <InboxOutlined />
             </p>
-            <p className="ant-upload-text" style={{fontSize: '20px', fontFamily: 'Montserrat'}}>Загрузите картинки</p>
+            <p className="ant-upload-text" style={{fontSize: '20px', fontFamily: 'Montserrat'}}>Загрузите картинки (макс. 5)</p>
             <p className="ant-upload-hint">
                 Коснитесь здесь или перетащите изображения в эту область
             </p>

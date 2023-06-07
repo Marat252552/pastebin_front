@@ -59,15 +59,12 @@ const ViewPage = () => {
                                 <Card title={<p style={{ fontSize: '20px', fontFamily: 'Montserrat' }}>{pin?.title}</p>}>
                                     <p style={{ fontSize: '15px', fontFamily: 'Montserrat' }}>{pin?.text}</p>
                                 </Card>
-                                {pin?.images_names && <ImagesGallery images_names={pin.images_names} />}
+                                {pin?.images_links && <ImagesGallery images_links={pin.images_links} />}
                             </>
                 }
 
 
-
-
             </div>
-
 
         </LargeMaxFullWidthTemplate>
     </PageMainTemplate>
