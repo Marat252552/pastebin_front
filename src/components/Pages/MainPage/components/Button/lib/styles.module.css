@@ -1,0 +1,19 @@
+.container {
+    padding: 10px;
+    font-family: Montserrat;
+    font-size: 15px;
+    background: black;
+    color: white;
+    border: solid 1px black;
+    border-radius: 10px;
+}
+
+.container:active {
+    padding: 10px;
+    font-family: Montserrat;
+    font-size: 15px;
+    background: white;
+    color: black;
+    border: solid 1px black;
+    border-radius: 10px;
+}

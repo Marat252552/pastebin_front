@@ -7,9 +7,9 @@ const SwitchField = ({register}: {register: UseFormRegister<Inputs_T>}) => {
 
     let {name, onChange} = register('one_read')
 
-    return <div style={{ display: 'flex', gap: '10px', fontSize: '20px' }}>
+    return <div style={{ display: 'flex', gap: '10px', fontSize: '15px' }}>
         <span>Удалить после первого прочтения?</span>
-        <Switch style={{fontSize: '20px'}} checkedChildren="Да" unCheckedChildren="Нет" onChange={(value) => {
+        <Switch checkedChildren='Да' unCheckedChildren="Нет" onChange={(value) => {
             let newE = {target: {value, name}}
             onChange(newE)
         }} />

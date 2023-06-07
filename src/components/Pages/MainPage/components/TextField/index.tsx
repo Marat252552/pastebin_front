@@ -1,7 +1,7 @@
 import TextArea from "antd/es/input/TextArea"
 import { FieldErrors, UseFormRegister } from "react-hook-form"
-import { Inputs_T } from "../lib/types"
-
+import { Inputs_T } from "../../lib/types"
+import styles from './lib/styles.module.css'
 
 
 const TextField = ({ register, errors }: { register: UseFormRegister<Inputs_T>, errors: FieldErrors<Inputs_T> }) => {
@@ -11,7 +11,7 @@ const TextField = ({ register, errors }: { register: UseFormRegister<Inputs_T>, 
         required: true
     })
 
-    return <div>
+    return <div className={styles.container}>
         {<p style={{ color: (errors.text?.type === 'maxLength') ? "red" : 'transparent', fontSize: '14px' }}>Не больше 200 символов</p>}
         <TextArea
             status={(errors.text) ? 'error' : undefined}

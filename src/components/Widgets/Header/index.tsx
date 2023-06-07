@@ -10,8 +10,11 @@ const Header = () => {
 
     return <div className={styles.container}>
         <LargeMaxFullWidthTemplate>
-            <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
-                <Button onClick={() => { navigate('/create') }} type='text' className={styles.button}>СОЗДАТЬ УНИКАЛЬНЫЙ ПИН</Button>
+            <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+                <Button onClick={() => { navigate('/create') }} type='text' className={styles.button}>
+                    <span style={{fontSize: '20px'}}>SIMPLE PASTEBIN</span>
+
+                </Button>
             </div>
 
         </LargeMaxFullWidthTemplate>

@@ -1,29 +1,25 @@
+import { CheckOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
-
+import {useState} from 'react'
 
 const { Search } = Input;
-
-// const suffix = (
-//     <AudioOutlined
-//         style={{
-//             fontSize: 16,
-//             color: '#1677ff',
-//         }}
-//     />
-// );
 
 
 
 const ClipboardLink = ({ value }: { value: string }) => {
-    const onSearch = () => {
-        navigator.clipboard.writeText(value)
-    }
+
+    let [isCopied, setIsCopied] = useState<boolean>(false)
+
     return <Search
         contentEditable={false}
         value={value}
-        enterButton="Скопировать"
+        suffix={(isCopied)? <CheckOutlined style={{color: 'green'}}/> : undefined}
+        enterButton={(isCopied)? 'Скопировано' : ' Скопировать'}
         size="large"
-        onSearch={onSearch}
+        onSearch={() => {
+            navigator.clipboard.writeText(value)
+            setIsCopied(true)
+        }}
     />
 }
 

@@ -35,12 +35,12 @@ const Uploader = ({ register, session_id, getValues }: { getValues: UseFormGetVa
                 console.log(info.fileList);
             }
             if (status === 'done') {
-                message.success(`${info.file.name} file uploaded successfully.`);
+                message.success(`${info.file.name} файл успешно загружен`);
                 let UIDs = info.fileList.map(el => el.uid)
                 let e = { target: { value: UIDs, name } }
                 onChange(e)
             } else if (status === 'error') {
-                message.error(`${info.file.name} file upload failed.`);
+                message.error(`${info.file.name} ошибка загрузки`);
             }
         },
         onDrop(e) {

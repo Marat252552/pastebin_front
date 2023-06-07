@@ -3,6 +3,7 @@ import MainPage from "./components/Pages/MainPage"
 import ViewPage from "./components/Pages/ViewPage"
 import NotFoundPage from "./components/Pages/NotFoundPage"
 import CompletedPinPage from "./components/Pages/CompletedPinPage"
+import InfoPage from "./components/Pages/InfoPage"
 
 
 
@@ -13,6 +14,7 @@ const App = () => {
       <Route path='/create' element={<MainPage />} />
       <Route path='/notfound' element={<NotFoundPage />} />
       <Route path='/completed/:pin_id' element={<CompletedPinPage />} />
+      <Route path='/info' element={<InfoPage />} />
       <Route path='*' element={<Navigate to='/create' />} />
     </Routes>
   </HashRouter>
