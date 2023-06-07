@@ -5,12 +5,11 @@ import ClipboardLink from "../../UI/ClipboardLink"
 import LargeMaxFullWidthTemplate from "../../Shared/Templates/LargeMaxFullWidthTemplate"
 
 
-
 const CompletedPinPage = () => {
 
     let { pin_id } = useParams()
 
-    let link = front_url + '/view/' + pin_id
+    let link = front_url + '/#/view/' + pin_id
 
     return <>
         <PageMainTemplate>
