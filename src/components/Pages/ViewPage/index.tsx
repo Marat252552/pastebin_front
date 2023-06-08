@@ -9,7 +9,6 @@ import { Card, Result, Skeleton } from 'antd'
 import PageMainTemplate from '../../Shared/Templates/Pages/MainTemplate'
 import SkeletonInput from 'antd/es/skeleton/Input'
 import SkeletonImage from 'antd/es/skeleton/Image'
-import { WarningTwoTone } from '@ant-design/icons'
 
 
 const ViewPage = () => {
