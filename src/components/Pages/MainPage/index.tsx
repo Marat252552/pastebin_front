@@ -103,7 +103,7 @@ const MainPage = () => {
                                 register={register}
                             />
 
-                            <ModalWindow callSuccess={callSuccess} callInfo={callInfo} />
+                            {/* <ModalWindow callSuccess={callSuccess} callInfo={callInfo} /> */}
 
 
                             <Uploader
