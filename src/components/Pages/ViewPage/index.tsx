@@ -9,6 +9,7 @@ import { Card, Result, Skeleton } from 'antd'
 import PageMainTemplate from '../../Shared/Templates/Pages/MainTemplate'
 import SkeletonInput from 'antd/es/skeleton/Input'
 import SkeletonImage from 'antd/es/skeleton/Image'
+import { WarningTwoTone } from '@ant-design/icons'
 
 
 const ViewPage = () => {
@@ -56,10 +57,11 @@ const ViewPage = () => {
                             />
                             :
                             <>
+                                {pin.one_read && <div style={{width: '100%', borderRadius: '10px', border: 'solid 1px #F273B8', paddingTop: '10px', paddingBottom: '10px', display: 'flex', justifyContent: 'center', background: '#FFF0F6', textAlign: 'center'}}>Единоразовый просмотр</div>}
                                 <Card title={<p style={{ fontSize: '20px', fontFamily: 'Montserrat' }}>{pin?.title}</p>}>
                                     <p style={{ fontSize: '15px', fontFamily: 'Montserrat' }}>{pin?.text}</p>
                                 </Card>
-                                {pin?.images_links && <ImagesGallery images_links={pin.images_links} />}
+                                {pin?.images && <ImagesGallery images={pin.images} />}
                             </>
                 }
 

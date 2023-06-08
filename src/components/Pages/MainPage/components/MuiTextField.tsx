@@ -9,7 +9,7 @@ const MuiTextField = ({ register, errors }: { register: any, errors: FieldErrors
     let [length, setLength] = useState<number>(0)
 
     let {name, onBlur, onChange, ref, required} = register('text', {
-        required: 'Введите название',
+        required: 'Введите текст',
         maxLength: 200
     })
 
