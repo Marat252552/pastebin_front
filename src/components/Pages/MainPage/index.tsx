@@ -62,20 +62,6 @@ const MainPage = () => {
         });
     };
 
-    const callSuccess = (value: string) => {
-        messageApi.open({
-            type: 'success',
-            content: value,
-        });
-    };
-
-    const callInfo = (value: string) => {
-        messageApi.open({
-            type: 'warning',
-            content: value,
-        });
-    };
-
     return <>
         <PageMainTemplate>
             <LargeMaxFullWidthTemplate>
