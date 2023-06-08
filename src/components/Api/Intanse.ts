@@ -1,10 +1,8 @@
 import axios from "axios";
-import { backend_url } from "../../config/env";
-
 
 
 const Instanse = axios.create({
-    baseURL: backend_url
+    baseURL: import.meta.env.VITE_BACKEND_URL
 })
 
 export default Instanse

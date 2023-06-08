@@ -7,14 +7,13 @@ import styles from './lib/styles.module.css'
 const PageMainTemplate = ({ children }: { children: any }) => {
     return <>
         <div className={styles.container}>
-            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className={styles.header_body_container}>
                 <Header />
                 <LargeMaxFullWidthTemplate>
-                    
+                    <div className={styles.children_container}>
                         {children}
-                    
+                    </div>
                 </LargeMaxFullWidthTemplate>
-
             </div>
             <Footer />
         </div>

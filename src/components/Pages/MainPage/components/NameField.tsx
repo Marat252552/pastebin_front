@@ -3,6 +3,9 @@ import CustomTextField from "../../../UI/CustomTextField"
 import { Inputs_T } from "../lib/types"
 import {useState} from 'react'
 
+let MaxLengthAlert = () => (
+    <span style={{ fontSize: '12px', color: 'red' }}>Не больше 20 символов</span>
+)
 
 const NameField = ({ register, errors }: { register: UseFormRegister<Inputs_T>, errors: FieldErrors<Inputs_T> }) => {
 
@@ -31,7 +34,7 @@ const NameField = ({ register, errors }: { register: UseFormRegister<Inputs_T>, 
                 label={errors.title?.message || 'Название'}
             />
             <span style={{fontSize: '12px'}}>{length} из 20</span>
-            {errors.title?.type === 'maxLength' && <span style={{ fontSize: '12px', color: 'red' }}>Не больше 20 символов</span>}
+            {errors.title?.type === 'maxLength' && <MaxLengthAlert />}
         </div>
 
     </>

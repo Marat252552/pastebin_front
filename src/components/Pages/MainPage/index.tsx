@@ -1,4 +1,3 @@
-import LargeMaxFullWidthTemplate from "../../Shared/Templates/LargeMaxFullWidthTemplate"
 import Uploader from "../../Widgets/Uploader"
 import { useForm } from "react-hook-form"
 import { Inputs_T } from "./lib/types"
@@ -19,17 +18,7 @@ import { LoadingOutlined } from "@ant-design/icons"
 
 const MainPage = () => {
 
-    let { register, handleSubmit, formState: { errors }, getValues } = useForm<Inputs_T>({
-        mode: 'onChange',
-        defaultValues: {
-            one_read: false
-        }
-    })
-
     let [session_id, setSession_id] = useState<string>('')
-
-    let [isLoading, setIsLoading] = useState<boolean>(false)
-
     let generateSessionID = () => {
         let new_session_id = v4()
         setSession_id(new_session_id)
@@ -38,6 +27,7 @@ const MainPage = () => {
         generateSessionID()
     }, [])
 
+    let [isLoading, setIsLoading] = useState<boolean>(false)
     let navigate = useNavigate()
 
     const onSubmit = async ({ files_UIDs, text, title, one_read }: Inputs_T) => {
@@ -62,52 +52,55 @@ const MainPage = () => {
         });
     };
 
+    let { register, handleSubmit, formState: { errors }, getValues } = useForm<Inputs_T>({
+        mode: 'onChange',
+        defaultValues: {
+            one_read: false
+        }
+    })
+
     return <>
         <PageMainTemplate>
-            <LargeMaxFullWidthTemplate>
-                <div className={styles.container}>
-                    {contextHolder}
-                    <h3 style={{ fontFamily: 'Montserrat', textAlign: 'center' }}>Создайте свой уникальный bin</h3>
+                
+                {contextHolder}
 
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)}>
 
-                        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div className={styles.container}>
 
+                        <h3 style={{ fontFamily: 'Montserrat', textAlign: 'center' }}>Создайте свой уникальный bin</h3>
 
-                            <NameField
-                                errors={errors}
-                                register={register}
-                            />
+                        <NameField
+                            errors={errors}
+                            register={register}
+                        />
 
-                            <MuiTextField
-                                errors={errors}
-                                register={register}
-                            />
+                        <MuiTextField
+                            errors={errors}
+                            register={register}
+                        />
 
-                            <SwitchField
-                                register={register}
-                            />
+                        <SwitchField
+                            register={register}
+                        />
 
-                            <Uploader
-                                getValues={getValues}
-                                register={register}
-                                session_id={session_id}
-                            />
+                        <Uploader
+                            getValues={getValues}
+                            register={register}
+                            session_id={session_id}
+                        />
 
-                            {
-                                (isLoading) ?
-                                    <Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'black' }} spin />} />
-                                    :
-                                    <Button>Создать</Button>
-                            }
+                        {
+                            (isLoading) ?
+                                <Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'black' }} spin />} />
+                                :
+                                <Button>Создать</Button>
+                        }
 
-                        </div>
+                    </div>
 
-                    </form>
+                </form>
 
-                </div>
-
-            </LargeMaxFullWidthTemplate>
         </PageMainTemplate>
     </>
 
