@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { v4 } from "uuid"
 import { useNavigate } from 'react-router-dom'
 import SwitchField from "./components/SwitchField"
-import ModalWindow from "./components/ModalWindow"
+// import ModalWindow from "./components/ModalWindow"
 import PageMainTemplate from "../../Shared/Templates/Pages/MainTemplate"
 import NameField from "./components/NameField"
 import MuiTextField from "./components/MuiTextField"
@@ -63,19 +63,19 @@ const MainPage = () => {
         });
     };
 
-    const callSuccess = (value: string) => {
-        messageApi.open({
-            type: 'success',
-            content: value,
-        });
-    };
+    // const callSuccess = (value: string) => {
+    //     messageApi.open({
+    //         type: 'success',
+    //         content: value,
+    //     });
+    // };
 
-    const callInfo = (value: string) => {
-        messageApi.open({
-            type: 'warning',
-            content: value,
-        });
-    };
+    // const callInfo = (value: string) => {
+    //     messageApi.open({
+    //         type: 'warning',
+    //         content: value,
+    //     });
+    // };
 
     return <>
         <PageMainTemplate>
