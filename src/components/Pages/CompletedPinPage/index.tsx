@@ -7,11 +7,11 @@ import { SmileOutlined } from "@ant-design/icons"
 
 const CompletedPinPage = () => {
 
-    let front_url = import.meta.env.VITE_FRONTEND_URL
+    let origin = window.location.origin
 
     let { pin_id } = useParams()
 
-    let link = front_url + '/#/view/' + pin_id
+    let link = origin + '/#/view/' + pin_id
 
     return <>
         <PageMainTemplate>
