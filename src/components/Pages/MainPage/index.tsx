@@ -53,6 +53,14 @@ const MainPage = () => {
         });
     };
 
+    const callInfoModal = (value: string) => {
+        messageApi.open({
+            type: 'info',
+            content: value,
+            duration: 10
+        });
+    };
+
     let { register, handleSubmit, formState: { errors }, getValues } = useForm<Inputs_T>({
         mode: 'onChange',
         defaultValues: {
@@ -97,6 +105,7 @@ const MainPage = () => {
                         getValues={getValues}
                         register={register}
                         session_id={session_id}
+                        callInfoModal={callInfoModal}
                     />
 
                     {

@@ -4,16 +4,15 @@ import { message, Upload } from 'antd';
 import uploadFile from './processes/UploadFile';
 import { UseFormGetValues, UseFormRegister } from 'react-hook-form';
 import { Inputs_T } from '../../Pages/MainPage/lib/types';
-
+import {useState} from 'react'
 const { Dragger } = Upload;
 
 
-
-
-
-const Uploader = ({ register, session_id, getValues }: { getValues: UseFormGetValues<Inputs_T>, register: UseFormRegister<Inputs_T>, session_id: string }) => {
+const Uploader = ({ callInfoModal, register, session_id, getValues }: { callInfoModal: (text: string) => void, getValues: UseFormGetValues<Inputs_T>, register: UseFormRegister<Inputs_T>, session_id: string }) => {
 
     const { onChange, name } = register('files_UIDs')
+
+    let [isFinished, setIsFinished] = useState(false)
 
     const props: UploadProps = {
         name: 'files_UIDs',
@@ -27,7 +26,7 @@ const Uploader = ({ register, session_id, getValues }: { getValues: UseFormGetVa
             let data = {target: {value: newAllFilesUIDs, name}}
             onChange(data)
         },
-        customRequest: (options) => { uploadFile(options, session_id) },
+        customRequest: (options) => { uploadFile(isFinished, setIsFinished, options, session_id, callInfoModal) },
         onChange(info) {
             const { status } = info.file;
             if (status !== 'uploading') {
@@ -49,6 +48,7 @@ const Uploader = ({ register, session_id, getValues }: { getValues: UseFormGetVa
     };
 
     return <>
+
         <Dragger {...props} accept='image/*'>
             <p className="ant-upload-drag-icon">
                 <InboxOutlined />
