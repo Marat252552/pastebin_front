@@ -13,6 +13,7 @@ import Button from "./components/Button"
 import styles from './lib/styles.module.css'
 import { Spin, message } from "antd"
 import { LoadingOutlined } from "@ant-design/icons"
+import SliderField from "./components/SliderField"
 
 
 
@@ -30,10 +31,10 @@ const MainPage = () => {
     let [isLoading, setIsLoading] = useState<boolean>(false)
     let navigate = useNavigate()
 
-    const onSubmit = async ({ files_UIDs, text, title, one_read }: Inputs_T) => {
+    const onSubmit = async ({ files_UIDs, text, title, one_read, days_alive }: Inputs_T) => {
         setIsLoading(true)
         try {
-            let response = await CreatePinAPI({ files_UIDs, text, session_id, title, one_read })
+            let response = await CreatePinAPI({ files_UIDs, text, session_id, title, one_read, days_alive })
             navigate('/completed/' + response.data.pin_id)
         } catch (e) {
             console.log(e)
@@ -59,47 +60,55 @@ const MainPage = () => {
         }
     })
 
+    let [one_read, setOne_read] = useState(false)
+
     return <>
         <PageMainTemplate>
-                
-                {contextHolder}
 
-                <form onSubmit={handleSubmit(onSubmit)}>
+            {contextHolder}
 
-                    <div className={styles.container}>
+            <form onSubmit={handleSubmit(onSubmit)}>
 
-                        <h3 style={{ fontFamily: 'Montserrat', textAlign: 'center' }}>Создайте свой уникальный bin</h3>
+                <div className={styles.container}>
 
-                        <NameField
-                            errors={errors}
-                            register={register}
-                        />
+                    <h3 style={{ fontFamily: 'Montserrat', textAlign: 'center' }}>Создайте свой уникальный bin</h3>
 
-                        <MuiTextField
-                            errors={errors}
-                            register={register}
-                        />
+                    <NameField
+                        errors={errors}
+                        register={register}
+                    />
 
-                        <SwitchField
-                            register={register}
-                        />
+                    <MuiTextField
+                        errors={errors}
+                        register={register}
+                    />
 
-                        <Uploader
-                            getValues={getValues}
-                            register={register}
-                            session_id={session_id}
-                        />
+                    <SwitchField
+                        setOne_read={setOne_read}
+                        register={register}
+                    />
 
-                        {
-                            (isLoading) ?
-                                <Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'black' }} spin />} />
-                                :
-                                <Button>Создать</Button>
-                        }
+                    {!one_read && <SliderField
+                        register={register}
+                    />}
 
-                    </div>
 
-                </form>
+                    <Uploader
+                        getValues={getValues}
+                        register={register}
+                        session_id={session_id}
+                    />
+
+                    {
+                        (isLoading) ?
+                            <Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'black' }} spin />} />
+                            :
+                            <Button>Создать</Button>
+                    }
+
+                </div>
+
+            </form>
 
         </PageMainTemplate>
     </>
