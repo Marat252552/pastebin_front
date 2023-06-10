@@ -24,7 +24,7 @@ const uploadFile = async (isFinished: boolean, setIsFinished: React.Dispatch<Rea
             if(!isFinished) {
                 callInfoModal('Первая загрузка может занимать одну минуту. Это связано с особенностями бесплатного веб хостинга')
             }
-        }, 10000)
+        }, 100)
         await UploadFileAPI(formData)
         
         onProgress(100)
