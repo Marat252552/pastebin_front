@@ -6,13 +6,13 @@ import ReturnUploadprops from './elements/ReturnUploadprops';
 const { Dragger } = Upload;
 
 
-const Uploader = ({ register, session_id, getValues }: { getValues: UseFormGetValues<Inputs_T>, register: UseFormRegister<Inputs_T>, session_id: string }) => {
+const Uploader = ({ register, session_id, getValues, disabled }: { getValues: UseFormGetValues<Inputs_T>, register: UseFormRegister<Inputs_T>, session_id: string, disabled: boolean }) => {
 
     const props = ReturnUploadprops(session_id, getValues, register)
 
     return <>
 
-        <Dragger {...props} accept='image/*'>
+        <Dragger {...props} disabled={disabled} accept='image/*'>
             <p className="ant-upload-drag-icon">
                 <InboxOutlined />
             </p>

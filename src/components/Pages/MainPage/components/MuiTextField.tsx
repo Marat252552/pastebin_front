@@ -4,7 +4,7 @@ import { Inputs_T } from "../lib/types"
 import {useState} from 'react'
 
 
-const MuiTextField = ({ register, errors }: { register: any, errors: FieldErrors<Inputs_T> }) => {
+const MuiTextField = ({ register, errors, disabled }: { register: any, errors: FieldErrors<Inputs_T>, disabled: boolean }) => {
 
     let [length, setLength] = useState<number>(0)
 
@@ -19,6 +19,7 @@ const MuiTextField = ({ register, errors }: { register: any, errors: FieldErrors
                 name={name}
                 onBlur={onBlur}
                 ref={ref}
+                disabled={disabled}
                 required={required}
                 onChange={e => {
                     setLength(e.target.value.length)

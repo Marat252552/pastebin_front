@@ -19,6 +19,8 @@ import CaptchaModal from "./components/CaptchaModal"
 
 const MainPage = () => {
 
+    console.log('main page rerendered')
+
     let [session_id] = useState(v4())
     let [isLoading, setIsLoading] = useState<boolean>(false)
     let [modalActive, setModalActive] = useState<boolean>(false)
@@ -68,26 +70,31 @@ const MainPage = () => {
                 <h3 style={{ fontFamily: 'Montserrat', textAlign: 'center' }}>Создайте свой уникальный bin</h3>
 
                 <NameField
+                    disabled={isLoading}
                     errors={errors}
                     register={register}
                 />
 
                 <MuiTextField
+                    disabled={isLoading}
                     errors={errors}
                     register={register}
                 />
 
                 <SwitchField
+                    disabled={isLoading}
                     setOne_read={setOne_read}
                     register={register}
                 />
 
                 {!one_read && <SliderField
+                    disabled={isLoading}
                     register={register}
                 />}
 
 
                 <Uploader
+                    disabled={isLoading}
                     getValues={getValues}
                     register={register}
                     session_id={session_id}
@@ -97,7 +104,7 @@ const MainPage = () => {
                     (isLoading) ?
                         <Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'black' }} spin />} />
                         :
-                        <Button onClick={() => {
+                        <Button disabled={isLoading} onClick={() => {
                             trigger()
                             if (!isValid) return
                             setModalActive(true)
@@ -105,6 +112,7 @@ const MainPage = () => {
                 }
 
             </div>
+
 
             <CaptchaModal
                 register={register}

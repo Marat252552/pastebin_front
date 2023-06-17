@@ -7,7 +7,7 @@ let MaxLengthAlert = () => (
     <span style={{ fontSize: '12px', color: 'red' }}>Не больше 20 символов</span>
 )
 
-const NameField = ({ register, errors }: { register: UseFormRegister<Inputs_T>, errors: FieldErrors<Inputs_T> }) => {
+const NameField = ({ register, errors, disabled }: { register: UseFormRegister<Inputs_T>, errors: FieldErrors<Inputs_T>, disabled: boolean }) => {
 
     let [length, setLength] = useState<number>(0)
 
@@ -22,6 +22,7 @@ const NameField = ({ register, errors }: { register: UseFormRegister<Inputs_T>, 
                 name={name}
                 onBlur={onBlur}
                 ref={ref}
+                disabled={disabled}
                 required={required}
                 onChange={e => {
                     setLength(e.target.value.length)
