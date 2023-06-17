@@ -1,9 +1,8 @@
 import { Input } from "antd"
-import { Inputs_T } from "../lib/types"
-import { FieldErrors, UseFormRegister } from "react-hook-form"
+import { TitleField_T } from "../lib/types"
 
 
-const TitleField = ({ register, errors }: { register: UseFormRegister<Inputs_T>, errors: FieldErrors<Inputs_T> }) => {
+const TitleField: TitleField_T = ({ register, errors }) => {
 
     let { name, onChange } = register('title', {
         maxLength: 20,

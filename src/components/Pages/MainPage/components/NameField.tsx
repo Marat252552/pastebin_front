@@ -1,13 +1,12 @@
-import { FieldErrors, UseFormRegister } from "react-hook-form"
 import CustomTextField from "../../../UI/CustomTextField"
-import { Inputs_T } from "../lib/types"
+import { NameField_T } from "../lib/types"
 import {useState} from 'react'
 
 let MaxLengthAlert = () => (
     <span style={{ fontSize: '12px', color: 'red' }}>Не больше 20 символов</span>
 )
 
-const NameField = ({ register, errors, disabled }: { register: UseFormRegister<Inputs_T>, errors: FieldErrors<Inputs_T>, disabled: boolean }) => {
+const NameField: NameField_T = ({ register, errors, disabled }) => {
 
     let [length, setLength] = useState<number>(0)
 

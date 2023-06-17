@@ -1,10 +1,8 @@
 import Modal from '../../../Shared/Modal'
-import React from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { Inputs_T } from '../lib/types'
-import { UseFormRegister } from 'react-hook-form'
+import { CaptchaModal_T } from '../lib/types'
 
-const CaptchaModal = ({ register, active, setActive, triggerSubmit }: { triggerSubmit: () => void, register: UseFormRegister<Inputs_T>, active: boolean, setActive: React.Dispatch<React.SetStateAction<boolean>> }) => {
+const CaptchaModal: CaptchaModal_T = ({ register, active, setActive, triggerSubmit }) => {
 
     const { onChange, name } = register('captcha')
 

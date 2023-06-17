@@ -1,11 +1,10 @@
 import { Switch } from "antd"
-import { UseFormRegister } from "react-hook-form"
-import { Inputs_T } from "../../lib/types"
+import { SwitchField_T } from "../../lib/types"
 import { useState } from "react"
 import SliderField from "./elements/SliderField"
 
 
-const SwitchField = ({ register, disabled }: { register: UseFormRegister<Inputs_T>, disabled: boolean }) => {
+const SwitchField: SwitchField_T = ({ register, disabled }) => {
 
     let { name, onChange } = register('one_read')
     let [one_read, setOne_read] = useState(false)

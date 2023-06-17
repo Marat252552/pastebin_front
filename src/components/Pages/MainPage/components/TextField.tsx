@@ -1,10 +1,10 @@
-import { FieldErrors } from "react-hook-form"
 import CustomTextField from "../../../UI/CustomTextField"
-import { Inputs_T } from "../lib/types"
+import { TextField_T } from "../lib/types"
 import {useState} from 'react'
 
+ 
 
-const TextField = ({ register, errors, disabled }: { register: any, errors: FieldErrors<Inputs_T>, disabled: boolean }) => {
+const TextField: TextField_T = ({ register, errors, disabled }) => {
 
     let [length, setLength] = useState<number>(0)
 
