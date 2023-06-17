@@ -1,8 +1,7 @@
 import { InputNumber, Slider } from "antd";
 import { useState } from 'react'
-import { Inputs_T } from "../../lib/types";
+import { Inputs_T } from "../../../../lib/types"; 
 import { UseFormRegister } from "react-hook-form";
-import { useEffect } from 'react'
 
 
 const SliderField = ({ register, disabled }: { register: UseFormRegister<Inputs_T>, disabled: boolean }) => {
@@ -10,12 +9,6 @@ const SliderField = ({ register, disabled }: { register: UseFormRegister<Inputs_
     let { onChange, name } = register('days_alive')
 
     const [inputValue, setInputValue] = useState(100);
-
-    // This useEffect elements sets days_alive value to 100 in useForm values
-    useEffect(() => {
-        let newE = { target: { value: inputValue, name } }
-        onChange(newE)
-    }, [])
 
     const onChangeHandler = (newValue: number) => {
         setInputValue(newValue);

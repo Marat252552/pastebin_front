@@ -13,13 +13,10 @@ import Button from "./components/Button"
 import styles from './lib/styles.module.css'
 import { Spin, message } from "antd"
 import { LoadingOutlined } from "@ant-design/icons"
-import SliderField from "./components/SliderField"
 import CaptchaModal from "./components/CaptchaModal"
 
 
 const MainPage = () => {
-
-    console.log('main page rerendered')
 
     let [session_id] = useState(v4())
     let [isLoading, setIsLoading] = useState<boolean>(false)
@@ -51,7 +48,8 @@ const MainPage = () => {
     let { register, handleSubmit, formState: { errors, isValid }, getValues, trigger } = useForm<Inputs_T>({
         mode: 'onChange',
         defaultValues: {
-            one_read: false
+            one_read: false,
+            days_alive: 100
         }
     })
 
@@ -59,7 +57,6 @@ const MainPage = () => {
         handleSubmit(onSubmit)()
     }
 
-    let [one_read, setOne_read] = useState(false)
 
     return <>
         <PageMainTemplate>
@@ -83,15 +80,8 @@ const MainPage = () => {
 
                 <SwitchField
                     disabled={isLoading}
-                    setOne_read={setOne_read}
                     register={register}
                 />
-
-                {!one_read && <SliderField
-                    disabled={isLoading}
-                    register={register}
-                />}
-
 
                 <Uploader
                     disabled={isLoading}
