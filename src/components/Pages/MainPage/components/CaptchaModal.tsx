@@ -4,7 +4,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { Inputs_T } from '../lib/types'
 import { UseFormRegister } from 'react-hook-form'
 
-const CaptchaModal = ({ register, active, setActive, submit }: { submit: () => void, register: UseFormRegister<Inputs_T>, active: boolean, setActive: React.Dispatch<React.SetStateAction<boolean>> }) => {
+const CaptchaModal = ({ register, active, setActive, triggerSubmit }: { triggerSubmit: () => void, register: UseFormRegister<Inputs_T>, active: boolean, setActive: React.Dispatch<React.SetStateAction<boolean>> }) => {
 
     const { onChange, name } = register('captcha')
 
@@ -14,7 +14,7 @@ const CaptchaModal = ({ register, active, setActive, submit }: { submit: () => v
             onChange={(value) => {
                 let newE = { target: { value, name } }
                 onChange(newE)
-                submit()
+                triggerSubmit()
             }}
         />
     </Modal>

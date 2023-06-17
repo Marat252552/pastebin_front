@@ -4,7 +4,7 @@ import { Inputs_T } from '../../../Pages/MainPage/lib/types';
 import { UseFormGetValues, UseFormRegister } from 'react-hook-form';
 
 const ReturnUploadprops = (session_id: string, getValues: UseFormGetValues<Inputs_T>, register: UseFormRegister<Inputs_T>) => {
-    
+
     const { onChange, name } = register('files_UIDs')
 
     const props: UploadProps = {
@@ -16,31 +16,23 @@ const ReturnUploadprops = (session_id: string, getValues: UseFormGetValues<Input
             let newAllFilesUIDs = allFilesUIDs.filter(el => {
                 return el !== e.uid
             })
-            let data = {target: {value: newAllFilesUIDs, name}}
+            let data = { target: { value: newAllFilesUIDs, name } }
             onChange(data)
         },
         customRequest: (options) => { uploadFile(options, session_id) },
         onChange(info) {
             const { status, error } = info.file;
-            if (status !== 'uploading') {
-                console.log(info.fileList);
-            }
+            
             if (status === 'done') {
                 message.success(`${info.file.name} файл успешно загружен`);
                 let UIDs = info.fileList.map(el => el.uid)
                 let e = { target: { value: UIDs, name } }
                 onChange(e)
             } else if (status === 'error') {
-                if(error.status === 413) {
-                    message.error('Размер файла превышает 4 МБ')
-                } else {
-                    message.error(`${info.file.name} ошибка загрузки`);
-                }
+                if(!error) return message.error(`${info.file.name} ошибка загрузки`);
+                if(error.status) return message.error('Размер файла превышает 4 МБ')
             }
-        },
-        onDrop(e) {
-            console.log('Dropped files', e.dataTransfer.files);
-        },
+        }
     }
     return props
 }

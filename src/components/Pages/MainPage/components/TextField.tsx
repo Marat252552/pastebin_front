@@ -4,7 +4,7 @@ import { Inputs_T } from "../lib/types"
 import {useState} from 'react'
 
 
-const MuiTextField = ({ register, errors, disabled }: { register: any, errors: FieldErrors<Inputs_T>, disabled: boolean }) => {
+const TextField = ({ register, errors, disabled }: { register: any, errors: FieldErrors<Inputs_T>, disabled: boolean }) => {
 
     let [length, setLength] = useState<number>(0)
 
@@ -39,4 +39,4 @@ const MuiTextField = ({ register, errors, disabled }: { register: any, errors: F
     </>
 }
 
-export default MuiTextField
+export default TextField

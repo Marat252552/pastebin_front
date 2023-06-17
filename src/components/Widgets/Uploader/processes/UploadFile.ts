@@ -28,8 +28,6 @@ const uploadFile = async (options: any, session_id: string) => {
     } catch(e: any) {
         console.log(e)
         onError(e.response)
-    } finally {
-        console.log('finished')
     }
 }
 
