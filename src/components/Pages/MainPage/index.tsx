@@ -2,7 +2,7 @@ import Uploader from "../../Widgets/Uploader"
 import { useForm } from "react-hook-form"
 import { Inputs_T } from "./lib/types"
 import CreatePinAPI from "../../Api/CreatePinAPI"
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { v4 } from "uuid"
 import { useNavigate } from 'react-router-dom'
 import SwitchField from "./components/SwitchField"
@@ -14,27 +14,20 @@ import styles from './lib/styles.module.css'
 import { Spin, message } from "antd"
 import { LoadingOutlined } from "@ant-design/icons"
 import SliderField from "./components/SliderField"
-
+import CaptchaModal from "./components/CaptchaModal"
 
 
 const MainPage = () => {
 
-    let [session_id, setSession_id] = useState<string>('')
-    let generateSessionID = () => {
-        let new_session_id = v4()
-        setSession_id(new_session_id)
-    }
-    useEffect(() => {
-        generateSessionID()
-    }, [])
-
+    let [session_id] = useState(v4())
     let [isLoading, setIsLoading] = useState<boolean>(false)
-    let navigate = useNavigate()
+    let [modalActive, setModalActive] = useState<boolean>(false)
 
-    const onSubmit = async ({ files_UIDs, text, title, one_read, days_alive }: Inputs_T) => {
+    let navigate = useNavigate()
+    const onSubmit = async (values: Inputs_T) => {
         setIsLoading(true)
         try {
-            let response = await CreatePinAPI({ files_UIDs, text, session_id, title, one_read, days_alive })
+            let response = await CreatePinAPI({ session_id, ...values })
             navigate('/completed/' + response.data.pin_id)
         } catch (e) {
             console.log(e)
@@ -53,20 +46,16 @@ const MainPage = () => {
         });
     };
 
-    const callInfoModal = (value: string) => {
-        messageApi.open({
-            type: 'info',
-            content: value,
-            duration: 10
-        });
-    };
-
-    let { register, handleSubmit, formState: { errors }, getValues } = useForm<Inputs_T>({
+    let { register, handleSubmit, formState: { errors, isValid }, getValues, trigger } = useForm<Inputs_T>({
         mode: 'onChange',
         defaultValues: {
             one_read: false
         }
     })
+
+    let submit = () => {
+        handleSubmit(onSubmit)()
+    }
 
     let [one_read, setOne_read] = useState(false)
 
@@ -74,50 +63,55 @@ const MainPage = () => {
         <PageMainTemplate>
 
             {contextHolder}
+            <div className={styles.container}>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+                <h3 style={{ fontFamily: 'Montserrat', textAlign: 'center' }}>Создайте свой уникальный bin</h3>
 
-                <div className={styles.container}>
+                <NameField
+                    errors={errors}
+                    register={register}
+                />
 
-                    <h3 style={{ fontFamily: 'Montserrat', textAlign: 'center' }}>Создайте свой уникальный bin</h3>
+                <MuiTextField
+                    errors={errors}
+                    register={register}
+                />
 
-                    <NameField
-                        errors={errors}
-                        register={register}
-                    />
+                <SwitchField
+                    setOne_read={setOne_read}
+                    register={register}
+                />
 
-                    <MuiTextField
-                        errors={errors}
-                        register={register}
-                    />
-
-                    <SwitchField
-                        setOne_read={setOne_read}
-                        register={register}
-                    />
-
-                    {!one_read && <SliderField
-                        register={register}
-                    />}
+                {!one_read && <SliderField
+                    register={register}
+                />}
 
 
-                    <Uploader
-                        getValues={getValues}
-                        register={register}
-                        session_id={session_id}
-                        callInfoModal={callInfoModal}
-                    />
+                <Uploader
+                    getValues={getValues}
+                    register={register}
+                    session_id={session_id}
+                />
 
-                    {
-                        (isLoading) ?
-                            <Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'black' }} spin />} />
-                            :
-                            <Button>Создать</Button>
-                    }
+                {
+                    (isLoading) ?
+                        <Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'black' }} spin />} />
+                        :
+                        <Button onClick={() => {
+                            trigger()
+                            if (!isValid) return
+                            setModalActive(true)
+                        }}>Создать</Button>
+                }
 
-                </div>
+            </div>
 
-            </form>
+            <CaptchaModal
+                register={register}
+                active={modalActive}
+                setActive={setModalActive}
+                submit={submit}
+            />
 
         </PageMainTemplate>
     </>

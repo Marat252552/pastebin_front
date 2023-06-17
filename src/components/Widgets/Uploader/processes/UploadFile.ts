@@ -9,7 +9,7 @@ const UploadFileAPI = (formData: FormData) => {
     })
 }
 
-const uploadFile = async (isFinished: boolean, setIsFinished: React.Dispatch<React.SetStateAction<boolean>>, options: any, session_id: string, callInfoModal: (text: string) => void) => {
+const uploadFile = async (options: any, session_id: string) => {
     const { onSuccess, onError, file, onProgress } = options;
 
     let {uid} = file
@@ -19,21 +19,17 @@ const uploadFile = async (isFinished: boolean, setIsFinished: React.Dispatch<Rea
     formData.append('file', file)
     formData.append('uid', uid)
     formData.append('session_id', session_id)
+
     try {
-        setTimeout(() => {
-            if(!isFinished) {
-                callInfoModal('Первая загрузка может занимать одну минуту. Это связано с особенностями бесплатного веб хостинга')
-            }
-        }, 8000)
-        await UploadFileAPI(formData)
+        let response = await UploadFileAPI(formData)
         
         onProgress(100)
-        onSuccess()
-    } catch(e) {
+        onSuccess(response)
+    } catch(e: any) {
         console.log(e)
-        onError()
+        onError(e.response)
     } finally {
-        setIsFinished(true)
+        console.log('finished')
     }
 }
 

@@ -3,5 +3,6 @@ export type Inputs_T = {
     text: string,
     title: string,
     one_read: boolean,
-    days_alive?: number
+    days_alive?: number,
+    captcha: string
 }

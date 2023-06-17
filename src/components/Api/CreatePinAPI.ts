@@ -7,6 +7,7 @@ type CreatePinAPI_T = (body: {
     session_id: string;
     title: string;
     one_read: boolean,
+    captcha: string,
     days_alive?: number | undefined
 }) => Promise<AxiosResponse<{link: string, pin_id: string}, any>>
 
