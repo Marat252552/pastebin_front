@@ -7,6 +7,9 @@ import InfoPage from "./components/Pages/InfoPage"
 
 
 const App = () => {
+  // Sending GET request on server to power it on
+  fetch(import.meta.env.VITE_BACKEND_URL)
+
   return <HashRouter>
     <Routes>
 
@@ -15,7 +18,7 @@ const App = () => {
       <Route path='/completed/:pin_id' element={<CompletedPinPage />} />
       <Route path='/info' element={<InfoPage />} />
       <Route path='*' element={<Navigate to='/create' />} />
-      
+
     </Routes>
   </HashRouter>
 }
